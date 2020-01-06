@@ -1,6 +1,6 @@
 # Security
 Header set X-Content-Type-Options "nosniff"
-# Header set X-Frame-Options "SAMEORIGIN"
+Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 Header set X-DNS-Prefetch-Control "off"
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
@@ -32,6 +32,19 @@ Header set Pragma "no-cache"
     mod_gzip_item_include mime ^application/x-javascript.*
     mod_gzip_item_exclude mime ^image\.*
     mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/shtml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
 </IfModule>
 
 ServerSignature Off
